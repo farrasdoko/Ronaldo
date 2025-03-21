@@ -30,6 +30,7 @@
 		33F29A292D8CF7D700C4557A /* PokemonDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F29A282D8CF7D700C4557A /* PokemonDetailCell.swift */; };
 		33F29A2B2D8CF83F00C4557A /* PokemonDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F29A2A2D8CF83F00C4557A /* PokemonDetail.swift */; };
 		33F29A2D2D8D019200C4557A /* PokemonListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F29A2C2D8D019200C4557A /* PokemonListResponse.swift */; };
+		33F29A302D8D742000C4557A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F29A2F2D8D742000C4557A /* SearchViewController.swift */; };
 		B7A3800B92B123538E12CE6E /* Pods_Ronaldo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C451945812BD15597D961EF2 /* Pods_Ronaldo.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		33F29A282D8CF7D700C4557A /* PokemonDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailCell.swift; sourceTree = "<group>"; };
 		33F29A2A2D8CF83F00C4557A /* PokemonDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetail.swift; sourceTree = "<group>"; };
 		33F29A2C2D8D019200C4557A /* PokemonListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListResponse.swift; sourceTree = "<group>"; };
+		33F29A2F2D8D742000C4557A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5E818141CF4D1632E3694138 /* Pods-Ronaldo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ronaldo.release.xcconfig"; path = "Target Support Files/Pods-Ronaldo/Pods-Ronaldo.release.xcconfig"; sourceTree = "<group>"; };
 		7EF033B28199E4D07719DC3A /* Pods-Ronaldo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ronaldo.debug.xcconfig"; path = "Target Support Files/Pods-Ronaldo/Pods-Ronaldo.debug.xcconfig"; sourceTree = "<group>"; };
 		C451945812BD15597D961EF2 /* Pods_Ronaldo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ronaldo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +171,7 @@
 		3350DAA12D8BA6AF006E2802 /* Ronaldo */ = {
 			isa = PBXGroup;
 			children = (
+				33F29A2E2D8D741400C4557A /* Search */,
 				33F29A232D8CF79B00C4557A /* PokemonDetail */,
 				3301729E2D8C1D4F001DECB6 /* Profile */,
 				330172982D8BC7E8001DECB6 /* Home */,
@@ -195,6 +198,14 @@
 				33F29A282D8CF7D700C4557A /* PokemonDetailCell.swift */,
 			);
 			path = PokemonDetail;
+			sourceTree = "<group>";
+		};
+		33F29A2E2D8D741400C4557A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				33F29A2F2D8D742000C4557A /* SearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		8DA81FD4F5870A9C928D6472 /* Pods */ = {
@@ -340,6 +351,7 @@
 				3301729A2D8BC7FD001DECB6 /* HomeViewController.swift in Sources */,
 				33F29A2B2D8CF83F00C4557A /* PokemonDetail.swift in Sources */,
 				330172A02D8C1D6B001DECB6 /* ProfileViewController.swift in Sources */,
+				33F29A302D8D742000C4557A /* SearchViewController.swift in Sources */,
 				330172A92D8C2F1E001DECB6 /* ProfileViewModel.swift in Sources */,
 				3301728A2D8BBD77001DECB6 /* LoginViewModel.swift in Sources */,
 				33F29A292D8CF7D700C4557A /* PokemonDetailCell.swift in Sources */,

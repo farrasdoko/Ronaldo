@@ -39,7 +39,7 @@ class HomeViewModel {
                     self.pokemonList.accept(updatedList)
                     self.nextURL = data.next // Update pagination
                 case .failure(let error):
-                    print("Error fetching Pokémon data: \(error.localizedDescription)")
+                    print("Error fetching Pokemon data: \(error.localizedDescription)")
                 }
                 
                 self.isFetching = false
