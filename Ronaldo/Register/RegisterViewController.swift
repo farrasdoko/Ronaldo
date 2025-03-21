@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 class RegisterViewController: UIViewController {
     
@@ -163,6 +164,17 @@ class RegisterViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.isLoading
+            .subscribe(onNext: { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    self.showLoading()
+                } else {
+                    self.hideLoading()
+                }
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.registerResult
             .subscribe(onNext: { [weak self] success in
                 if success {
@@ -173,6 +185,15 @@ class RegisterViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func showLoading() {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = "Logging in..."
+    }
+    
+    private func hideLoading() {
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
     
     private func showErrorMessage(_ message: String) {

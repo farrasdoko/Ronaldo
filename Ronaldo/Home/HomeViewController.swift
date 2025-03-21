@@ -10,6 +10,7 @@ import SnapKit
 import XLPagerTabStrip
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 class HomeViewController: UIViewController {
     
@@ -67,7 +68,19 @@ class HomeViewController: UIViewController {
                 cell.textLabel?.text = item.name.capitalized
             }
             .disposed(by: disposeBag)
+        
+        viewModel.isLoading
+            .subscribe(onNext: { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    MBProgressHUD.showAdded(to: self.view, animated: true)
+                } else {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
     }
+
 }
 
 extension HomeViewController: UITableViewDelegate {

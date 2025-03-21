@@ -20,18 +20,26 @@ class LoginViewModel {
         return Observable.combineLatest(emailText, passwordText)
             .map { !$0.isEmpty && !$1.isEmpty }
     }
+    
     let loginResult = PublishSubject<Bool>()
+    let isLoading = PublishSubject<Bool>()
     
     // MARK: Progress
     func login() {
-        let email = emailText.value
-        let password = passwordText.value
-        let user = DatabaseManager.shared.getUser(email: email, password: password)
+        isLoading.onNext(true)
         
-        if let user {
-            SessionManager.shared.saveUser(user)
+        DispatchQueue.global().asyncAfter(deadline: .now()) {
+            let email = self.emailText.value
+            let password = self.passwordText.value
+            let user = DatabaseManager.shared.getUser(email: email, password: password)
+            
+            DispatchQueue.main.async {
+                self.isLoading.onNext(false)
+                if let user {
+                    SessionManager.shared.saveUser(user)
+                }
+                self.loginResult.onNext(user != nil)
+            }
         }
-        
-        loginResult.onNext(user != nil)
     }
 }

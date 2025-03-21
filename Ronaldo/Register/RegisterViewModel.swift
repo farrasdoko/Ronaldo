@@ -31,17 +31,24 @@ class RegisterViewModel {
     }
     
     let registerResult = PublishSubject<Bool>()
+    let isLoading = PublishSubject<Bool>()
     
     func register() {
-        let fullName = fullNameText.value
-        let email = emailText.value
-        let password = passwordText.value
+        isLoading.onNext(true)
         
-        let user = DatabaseManager.shared.insertUser(fullName: fullName, email: email, password: password)
-        if let user {
-            SessionManager.shared.saveUser(user)
+        DispatchQueue.global().asyncAfter(deadline: .now()) {
+            let fullName = self.fullNameText.value
+            let email = self.emailText.value
+            let password = self.passwordText.value
+            let user = DatabaseManager.shared.insertUser(fullName: fullName, email: email, password: password)
+            
+            DispatchQueue.main.async {
+                self.isLoading.onNext(false)
+                if let user {
+                    SessionManager.shared.saveUser(user)
+                }
+                self.registerResult.onNext(user != nil)
+            }
         }
-        
-        registerResult.onNext(user != nil)
     }
 }

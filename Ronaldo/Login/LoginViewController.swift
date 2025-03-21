@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 class LoginViewController: UIViewController {
     
@@ -54,7 +55,6 @@ class LoginViewController: UIViewController {
         label.isUserInteractionEnabled = true
         return label
     }()
-    
     
     private let viewModel = LoginViewModel()
     private let disposeBag = DisposeBag()
@@ -131,6 +131,17 @@ class LoginViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.isLoading
+            .subscribe(onNext: { [weak self] isLoading in
+                guard let self = self else { return }
+                if isLoading {
+                    self.showLoading()
+                } else {
+                    self.hideLoading()
+                }
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.loginResult
             .subscribe(onNext: { [weak self] success in
                 if success {
@@ -141,7 +152,15 @@ class LoginViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-        
+    }
+    
+    private func showLoading() {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.label.text = "Logging in..."
+    }
+    
+    private func hideLoading() {
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
     
     private func showErrorMessage(_ message: String) {
@@ -164,5 +183,4 @@ class LoginViewController: UIViewController {
         window.rootViewController = navController
         UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
     }
-    
 }
